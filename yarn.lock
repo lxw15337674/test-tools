@@ -950,6 +950,21 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
+"@monaco-editor/loader@^1.3.2":
+  version "1.3.2"
+  resolved "http://npm-registry.qunhequnhe.com/@monaco-editor%2floader/-/loader-1.3.2.tgz#04effbb87052d19cd7d3c9d81c0635490f9bb6d8"
+  integrity sha512-BTDbpHl3e47r3AAtpfVFTlAi7WXv4UQ/xZmz8atKl4q7epQV5e7+JbigFDViWF71VBi4IIBdcWP57Hj+OWuc9g==
+  dependencies:
+    state-local "^1.0.6"
+
+"@monaco-editor/react@^4.4.6":
+  version "4.4.6"
+  resolved "http://npm-registry.qunhequnhe.com/@monaco-editor%2freact/-/react-4.4.6.tgz#8ae500b0edf85276d860ed702e7056c316548218"
+  integrity sha512-Gr3uz3LYf33wlFE3eRnta4RxP5FSNxiIV9ENn2D2/rN8KgGAD8ecvcITRtsbbyuOuNkwbuHYxfeaz2Vr+CtyFA==
+  dependencies:
+    "@monaco-editor/loader" "^1.3.2"
+    prop-types "^15.7.2"
+
 "@next/bundle-analyzer@^13.0.0":
   version "13.0.2"
   resolved "http://npm-registry.qunhequnhe.com/@next%2fbundle-analyzer/-/bundle-analyzer-13.0.2.tgz#1f26279af4ab2288fcd2f0297198e207ac4cfa81"
@@ -1265,6 +1280,11 @@
     expect "^29.0.0"
     pretty-format "^29.0.0"
 
+"@types/js-cookie@^2.x.x":
+  version "2.2.7"
+  resolved "http://npm-registry.qunhequnhe.com/@types%2fjs-cookie/-/js-cookie-2.2.7.tgz#226a9e31680835a6188e887f3988e60c04d3f6a3"
+  integrity sha512-aLkWa0C0vO5b4Sr798E26QgOkss68Un0bLjs7u9qxzPT5CG+8DuNTffWES58YzJs3hrVAOs1wonycqEBqNJubA==
+
 "@types/jsdom@^20.0.0":
   version "20.0.0"
   resolved "http://npm-registry.qunhequnhe.com/@types%2fjsdom/-/jsdom-20.0.0.tgz#4414fb629465167f8b7b3804b9e067bdd99f1791"
@@ -1543,6 +1563,25 @@ aggregate-error@^3.0.0:
   dependencies:
     clean-stack "^2.0.0"
     indent-string "^4.0.0"
+
+ahooks-v3-count@^1.0.0:
+  version "1.0.0"
+  resolved "http://npm-registry.qunhequnhe.com/ahooks-v3-count/-/ahooks-v3-count-1.0.0.tgz#ddeb392e009ad6e748905b3cbf63a9fd8262ca80"
+  integrity sha512-V7uUvAwnimu6eh/PED4mCDjE7tokeZQLKlxg9lCTMPhN+NjsSbtdacByVlR1oluXQzD3MOw55wylDmQo4+S9ZQ==
+
+ahooks@^3.7.2:
+  version "3.7.2"
+  resolved "http://npm-registry.qunhequnhe.com/ahooks/-/ahooks-3.7.2.tgz#0afa42625e77ae1cc4b60b19c45cf12a8cf29b56"
+  integrity sha512-nJPsQJcmJnGaNXiqgZdfO7UMs+o926LQg6VyDYt2vzKhXU8Ze/U87NsA/FeIvlIZB0rQr/j7uotFb1bGPp627A==
+  dependencies:
+    "@types/js-cookie" "^2.x.x"
+    ahooks-v3-count "^1.0.0"
+    dayjs "^1.9.1"
+    intersection-observer "^0.12.0"
+    js-cookie "^2.x.x"
+    lodash "^4.17.21"
+    resize-observer-polyfill "^1.5.1"
+    screenfull "^5.0.0"
 
 ajv@^6.10.0, ajv@^6.12.4:
   version "6.12.6"
@@ -2651,7 +2690,7 @@ date-fns@2.x:
   resolved "http://npm-registry.qunhequnhe.com/date-fns/-/date-fns-2.29.3.tgz#27402d2fc67eb442b511b70bbdf98e6411cd68a8"
   integrity sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==
 
-dayjs@1.x, dayjs@^1.10.4:
+dayjs@1.x, dayjs@^1.10.4, dayjs@^1.9.1:
   version "1.11.6"
   resolved "http://npm-registry.qunhequnhe.com/dayjs/-/dayjs-1.11.6.tgz#2e79a226314ec3ec904e3ee1dd5a4f5e5b1c7afb"
   integrity sha512-zZbY5giJAinCG+7AGaw0wIhNZ6J8AhWuSXKvuc1KAyMiRsvGQWqh4L+MomvhdAYjN+lqvVCMq1I41e3YHvXkyQ==
@@ -4120,6 +4159,11 @@ internal-slot@^1.0.3:
     has "^1.0.3"
     side-channel "^1.0.4"
 
+intersection-observer@^0.12.0:
+  version "0.12.2"
+  resolved "http://npm-registry.qunhequnhe.com/intersection-observer/-/intersection-observer-0.12.2.tgz#4a45349cc0cd91916682b1f44c28d7ec737dc375"
+  integrity sha512-7m1vEcPCxXYI8HqnL8CKI6siDyD+eIWSwgB3DZA+ZTogxk9I4CDnj4wilt9x/+/QbHI4YG5YZNmC6458/e9Ktg==
+
 is-arguments@^1.1.0, is-arguments@^1.1.1:
   version "1.1.1"
   resolved "http://npm-registry.qunhequnhe.com/is-arguments/-/is-arguments-1.1.1.tgz#15b3f88fda01f2a97fec84ca761a560f123efa9b"
@@ -4819,6 +4863,11 @@ joi@^17.4.0:
     "@sideway/address" "^4.1.3"
     "@sideway/formula" "^3.0.0"
     "@sideway/pinpoint" "^2.0.0"
+
+js-cookie@^2.x.x:
+  version "2.2.1"
+  resolved "http://npm-registry.qunhequnhe.com/js-cookie/-/js-cookie-2.2.1.tgz#69e106dc5d5806894562902aa5baec3744e9b2b8"
+  integrity sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ==
 
 js-sdsl@^4.1.4:
   version "4.1.5"
@@ -6128,7 +6177,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.8.1:
+prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "http://npm-registry.qunhequnhe.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -6841,6 +6890,11 @@ scheduler@^0.23.0:
   dependencies:
     loose-envify "^1.1.0"
 
+screenfull@^5.0.0:
+  version "5.2.0"
+  resolved "http://npm-registry.qunhequnhe.com/screenfull/-/screenfull-5.2.0.tgz#6533d524d30621fc1283b9692146f3f13a93d1ba"
+  integrity sha512-9BakfsO2aUQN2K9Fdbj87RJIEZ82Q9IGim7FqM5OsebfoFC6ZHXgDq/KvniuLTPdeM8wY2o6Dj3WQ7KeQCj3cA==
+
 scroll-into-view-if-needed@^2.2.25:
   version "2.2.29"
   resolved "http://npm-registry.qunhequnhe.com/scroll-into-view-if-needed/-/scroll-into-view-if-needed-2.2.29.tgz#551791a84b7e2287706511f8c68161e4990ab885"
@@ -7079,6 +7133,11 @@ start-server-and-test@^1.14.0:
     lazy-ass "1.6.0"
     ps-tree "1.2.0"
     wait-on "6.0.0"
+
+state-local@^1.0.6:
+  version "1.0.7"
+  resolved "http://npm-registry.qunhequnhe.com/state-local/-/state-local-1.0.7.tgz#da50211d07f05748d53009bee46307a37db386d5"
+  integrity sha512-HTEHMNieakEnoe33shBYcZ7NX83ACUjCu8c40iOGEZsngj9zRnkqS9j1pqQPXwobB0ZcVTk27REb7COQ0UR59w==
 
 stream-combiner@~0.0.4:
   version "0.0.4"
