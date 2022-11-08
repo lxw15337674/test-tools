@@ -1,4 +1,4 @@
-FROM registry.qunhequnhe.com/infra/node16:latest
+FROM registry.qunhequnhe.com/infra/base-builder-v16:latest as builder
 COPY . /approot
 RUN cd /approot && \
 yarn && \
