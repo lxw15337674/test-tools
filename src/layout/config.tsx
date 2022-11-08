@@ -18,9 +18,9 @@ function getItem(
 
 export const items: MenuItem[] = [
   getItem('json比对', 'compare', undefined),
-  getItem('User', 'sub1', undefined, [
-    getItem('Tom', '3'),
-    getItem('Bill', '4'),
-    getItem('Alex', '5'),
-  ]),
+  // getItem('User', 'sub1', undefined, [
+  //   getItem('Tom', '3'),
+  //   getItem('Bill', '4'),
+  //   getItem('Alex', '5'),
+  // ]),
 ];
