@@ -1,4 +1,4 @@
-FROM registry.qunhequnhe.com/infra/base-builder-v16:latest as builder
+FROM registry.qunhequnhe.com/infra/node16:latest  as builder
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
@@ -13,7 +13,7 @@ RUN \
 
 
 # Rebuild the source code only when needed
-FROM node:16-alpine AS builder
+FROM registry.qunhequnhe.com/infra/node16:latest   AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -29,7 +29,7 @@ RUN yarn build
 # RUN npm run build
 
 # Production image, copy all the files and run next
-FROM  registry.qunhequnhe.com/infra/base-builder-v16:latest AS runner
+FROM  registry.qunhequnhe.com/infra/node16:latest  AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
