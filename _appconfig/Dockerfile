@@ -1,5 +1,5 @@
 # Rebuild the source code only when needed
-FROM registry.qunhequnhe.com/infra/node16:latest   AS builder
+FROM registry.qunhequnhe.com/infra/base-builder-v16:latest   AS builder
 WORKDIR /app
 COPY . .
 
