@@ -16,6 +16,7 @@ function App() {
         options={{
           readOnly: false,
           originalEditable: true,
+          smoothScrolling: true,
         }}
       />
     </>

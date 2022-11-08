@@ -1,4 +1,5 @@
 import 'antd/dist/antd.css';
+import '../styles/global.css';
 
 import type { EmotionCache } from '@emotion/css';
 import type { NextPage } from 'next';
