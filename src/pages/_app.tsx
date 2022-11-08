@@ -1,7 +1,6 @@
 import 'antd/dist/antd.css';
 import '../styles/global.css';
 
-import type { EmotionCache } from '@emotion/css';
 import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
 
@@ -9,7 +8,6 @@ import Layout from '@/layout';
 
 type ExtendedAppProps = AppProps & {
   Component: NextPage;
-  emotionCache: EmotionCache;
 };
 
 const MyApp = ({ Component, pageProps }: ExtendedAppProps) => {
