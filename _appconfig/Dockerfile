@@ -11,4 +11,4 @@ WORKDIR /approot
 COPY --from=builder /approot /approot
 RUN ls /approot
 
-CMD ["yarn", "start"]
+CMD scfConfig=${SCFCONFIG} stage=${STAGE} domain=${DOMAIN} region=${REGION} functions=${SELECTFUNCS} yarn start
