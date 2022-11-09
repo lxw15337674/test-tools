@@ -1,5 +1,5 @@
 {
-  "name": "next-js-boilerplate",
+  "name": "test-tool",
   "version": "3.0.0",
   "scripts": {
     "dev": "next dev",
