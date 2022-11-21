@@ -11,16 +11,7 @@ module.exports = withBundleAnalyzer({
     dirs: ['.'],
   },
   output: 'standalone',
-  // experimental: {
-  //   // Prefer loading of ES Modules over CommonJS
-  //   // @link {https://nextjs.org/blog/next-11-1#es-modules-support|Blog 11.1.0}
-  //   // @link {https://github.com/vercel/next.js/discussions/27876|Discussion}
-  //   esmExternals: true,
-  //   // Experimental monorepo support
-  //   // @link {https://github.com/vercel/next.js/pull/22867|Original PR}
-  //   // @link {https://github.com/vercel/next.js/discussions/26420|Discussion}
-  //   externalDir: true,
-  // },
+ 
   poweredByHeader: false,
   trailingSlash: true,
   basePath: '',
@@ -34,7 +25,20 @@ module.exports = withBundleAnalyzer({
         source: '/',
         destination: '/compare',
         permanent: true,
-      },
-    ];
+      },]
+  },
+  async rewrites() {
+    return {
+      fallback: [
+        // {
+        //   source: '/:path*',
+        //   destination: `https://bim-tool-service-sit.qunhequnhe.com/:path*`,
+        // },
+        {
+          source:'/kaptain/:path*' ,
+          destination:'https://kaptain.qunhequnhe.com/:path*',
+        }
+      ],
+    }
   },
 });
