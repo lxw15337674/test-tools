@@ -8,7 +8,8 @@ import {
 } from '@ant-design/icons';
 import { items } from './config';
 import { queryUserLogout } from '@/api/user';
-const { Header, Content, Sider } = Layout;
+import { useAuth } from '@/layout/useAuth';
+const { Header, Content, Sider } = Layout; 
 
 interface Props {
   children: React.ReactNode;
@@ -16,6 +17,7 @@ interface Props {
 
 const SLayout = ({ children }: Props) => {
   const [collapsed, setCollapsed] = useState(false);
+  useAuth();
 
   const router = useRouter();
   const logout = () => {

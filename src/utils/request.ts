@@ -11,17 +11,15 @@ declare module 'axios' {
 const service = axios.create({});
 
 export interface ResponseData {
-  c: number | string;
-  d?: any;
-  m: string;
+  data?: any;
 }
 
 service.interceptors.response.use(
-  <T = any>(res: AxiosResponse<ResponseData>): Promise<T> => {
-    if (res.data.c === '0' || res.data.c === 0) {
-      return Promise.resolve(res.data.d);
+  <T = any>(res: AxiosResponse<any>): Promise<T> => {
+    if (res?.status===200) {
+      return Promise.resolve(res.data);
     }
-    return Promise.reject(new Error(res.data.m || '请求失败，请重试'));
+    return Promise.reject(new Error(res.data || '请求失败，请重试'));
   },
   err => Promise.reject(new Error((err && err.response && err.response.statusText) || '服务器错误，请重试'))
 );

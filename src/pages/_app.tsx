@@ -8,7 +8,9 @@ import Layout from '@/layout';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useLocalStorageState, useMount } from 'ahooks';
-import { useAuth, userInit } from '@/utils/useAuth';
+import { useAuth, userInit } from '@/layout/useAuth';
+import store from '@/store';
+import { Provider } from 'react-redux';
 
 type ExtendedAppProps = AppProps & {
   Component: NextPage;
@@ -30,13 +32,13 @@ const MyApp = ({ Component, pageProps }: ExtendedAppProps) => {
   //   };
   // }, []);
 
-  useAuth();
-
   return (
     <>
-      <Layout>
-        <Component {...pageProps} />;
-      </Layout>
+      <Provider store={store}>
+        <Layout>
+          <Component {...pageProps} />;
+        </Layout>
+      </Provider>
     </>
   );
 };
