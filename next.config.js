@@ -35,6 +35,10 @@ module.exports = withBundleAnalyzer({
         //   destination: `https://bim-tool-service-sit.qunhequnhe.com/:path*`,
         // },
         {
+          source:'/BimToolApi/:path*',
+          destination:'https://bim-tool-service-sit.qunhequnhe.com/:path*'
+        },
+        {
           source:'/kaptain/:path*' ,
           destination:'https://kaptain.qunhequnhe.com/:path*',
         }

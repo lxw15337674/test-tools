@@ -21,7 +21,20 @@ service.interceptors.response.use(
     }
     return Promise.reject(new Error(res.data || '请求失败，请重试'));
   },
-  err => Promise.reject(new Error((err && err.response && err.response.statusText) || '服务器错误，请重试'))
+  err => {
+    if (err.response.status===401) {
+      console.log('401');
+      
+      // debugger
+      // const { origin } = window.location;
+      // window.location.href = `https://kuauth.kujiale.com/loginpage?backurl=${origin}`;
+    }
+    Promise.reject(
+        new Error(
+          (err && err.response && err.response.statusText) ||
+            '服务器错误，请重试',
+        ),
+      );}
 );
 
 const request = {

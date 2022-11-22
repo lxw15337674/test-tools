@@ -1,4 +1,4 @@
-import { Layout, Menu, MenuProps, notification } from 'antd';
+import { Avatar, Layout, Menu, MenuProps, notification } from 'antd';
 import router, { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import {
@@ -9,6 +9,8 @@ import {
 import { items } from './config';
 import { queryUserLogout } from '@/api/user';
 import { useAuth } from '@/layout/useAuth';
+import { useAppSelector } from '@/store';
+import { deleteAllCookies } from '@/utils/cookie';
 const { Header, Content, Sider } = Layout; 
 
 interface Props {
@@ -18,21 +20,33 @@ interface Props {
 const SLayout = ({ children }: Props) => {
   const [collapsed, setCollapsed] = useState(false);
   useAuth();
-
+  const user = useAppSelector((store) => store.user);
   const router = useRouter();
+
   const logout = () => {
     queryUserLogout().then(()=>{
-    const { origin } = window.location;
-    window.location.href = `https://kuauth.kujiale.com/loginpage?backurl=${origin}`;
+    deleteAllCookies();
+   const { origin, href } = window.location;
+   const encodeHref = encodeURIComponent(href);
+    window.location.href = `https://kuauth.kujiale.com/loginpage?backurl=${encodeURIComponent(origin)}&nexturlv2=${encodeHref}`;
     })
   };
   const topBarItems: MenuProps['items'] = [
     {
-      label: <div className="h-4 py-4 leading-0">123</div>,
-      key: 'item-1',
+      label: (
+        <span>
+          <Avatar  src={user.avatar} />
+          <span className='ml-3'>{user.name}</span>
+        </span>
+      ),
+      key: 'avatar',
     },
     {
-      label: <div className="h-4 py-4 leading-0" onClick={logout}>退出登录</div>,
+      label: (
+        <div className="h-4 py-4 leading-0" onClick={logout}>
+          退出登录
+        </div>
+      ),
       key: 'item-2',
     },
   ];

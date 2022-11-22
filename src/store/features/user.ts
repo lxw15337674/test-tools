@@ -1,21 +1,23 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 
-export interface UserState {
-  value: number;
-  title: string
+export interface UserInfo {
+  name: string;
+  avatar:string;
 }
-const initialState: UserState = {
-  value: 0,
-  title: "redux toolkit pre"
+
+const initialState: UserInfo = {
+  name: '',
+  avatar:''
 };
 
 export const counterSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUser: (state) => {
-      state.value += 1;
+    setUser: (state,{payload}) => {
+      state.avatar = payload.avatar;
+      state.name = payload.nameZh;
     },
   },
 });
