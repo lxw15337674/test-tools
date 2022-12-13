@@ -36,7 +36,7 @@ const MyApp = ({ Component, pageProps }: ExtendedAppProps) => {
     <>
       <Provider store={store}>
         <Layout>
-          <Component {...pageProps} />;
+          <Component {...pageProps} />
         </Layout>
       </Provider>
     </>

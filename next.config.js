@@ -11,7 +11,7 @@ module.exports = withBundleAnalyzer({
     dirs: ['.'],
   },
   output: 'standalone',
- 
+
   poweredByHeader: false,
   trailingSlash: true,
   basePath: '',
@@ -30,17 +30,13 @@ module.exports = withBundleAnalyzer({
   async rewrites() {
     return {
       fallback: [
-        // {
-        //   source: '/:path*',
-        //   destination: `https://bim-tool-service-sit.qunhequnhe.com/:path*`,
-        // },
         {
-          source:'/BimToolApi/:path*',
-          destination:'https://bim-tool-service-sit.qunhequnhe.com/:path*'
+          source: '/BimToolApi/:path*',
+          destination: 'https://bim-tool-service-sit.qunhequnhe.com/BimToolApi/:path*',
         },
         {
-          source:'/kaptain/:path*' ,
-          destination:'https://kaptain.qunhequnhe.com/:path*',
+          source: '/kaptain/:path*',
+          destination: 'https://kaptain.qunhequnhe.com/:path*',
         }
       ],
     }

@@ -1,7 +1,7 @@
 import request from "@/utils/request";
 
 export async function checkLogin() {
-  return request.get('/BimToolApi/user/checkLogin');
+  return request.get('/kaptain/user/checkLogin');
 }
 
 export interface UserInfo {

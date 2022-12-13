@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kujiale sso page</title>
+    <script>
+        function init() {
+            var searchStr = location.search;
+            if (searchStr === '') {
+                return;
+            }
+            var searchAry = searchStr.slice(1).split('&');
+            var searchObj = {};
+            searchAry.forEach(function (search) {
+                var item = search.split('=');
+                console.log(item);
+                searchObj[item[0]] = item[1];
+            });
+            console.log(searchObj);
+            if (!searchObj.token || !searchObj.backurl) {
+                return;
+            }
+            document.cookie = 'qunheinternalsso=' + decodeURIComponent(searchObj.token);
+
+            if (searchObj.backurlv2) {
+                console.log(searchObj.backurlv2);
+                var backurlv2 = decodeURIComponent(searchObj.backurlv2);
+                console.log(backurlv2);
+                location.href = backurlv2;
+            } else {
+                var backurl = decodeURIComponent(searchObj.backurl);
+                console.log(backurl);
+                location.href = backurl;
+            }
+        }
+        init();
+    </script>
+</head>
+<body>
+<p>???????!</p>
+</body>
+</html>

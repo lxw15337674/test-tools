@@ -11,7 +11,7 @@ import { queryUserLogout } from '@/api/user';
 import { useAuth } from '@/layout/useAuth';
 import { useAppSelector } from '@/store';
 import { deleteAllCookies } from '@/utils/cookie';
-const { Header, Content, Sider } = Layout; 
+const { Header, Content, Sider } = Layout;
 
 interface Props {
   children: React.ReactNode;
@@ -24,19 +24,21 @@ const SLayout = ({ children }: Props) => {
   const router = useRouter();
 
   const logout = () => {
-    queryUserLogout().then(()=>{
-    deleteAllCookies();
-   const { origin, href } = window.location;
-   const encodeHref = encodeURIComponent(href);
-    window.location.href = `https://kuauth.kujiale.com/loginpage?backurl=${encodeURIComponent(origin)}&nexturlv2=${encodeHref}`;
-    })
+    queryUserLogout().then(() => {
+      deleteAllCookies();
+      const { origin, href } = window.location;
+      const encodeHref = encodeURIComponent(href);
+      window.location.href = `https://kuauth.kujiale.com/loginpage?backurl=${encodeURIComponent(
+        origin,
+      )}/login.html&nexturlv2=${encodeHref}`;
+    });
   };
   const topBarItems: MenuProps['items'] = [
     {
       label: (
         <span>
-          <Avatar  src={user.avatar} />
-          <span className='ml-3'>{user.name}</span>
+          <Avatar src={user.avatar} />
+          <span className="ml-3">{user.name}</span>
         </span>
       ),
       key: 'avatar',
