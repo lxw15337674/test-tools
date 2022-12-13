@@ -21,9 +21,10 @@
   },
   "dependencies": {
     "@monaco-editor/react": "^4.4.6",
+    "@qunhe/budget-hooks": "1.0.27-fix2",
     "@reduxjs/toolkit": "^1.9.0",
     "ahooks": "^3.7.2",
-    "antd": "^4.24.0",
+    "antd": "^4",
     "axios": "^1.1.3",
     "next": "^13.0.0",
     "next-seo": "^5.8.0",

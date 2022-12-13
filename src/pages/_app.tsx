@@ -1,5 +1,5 @@
-import 'antd/dist/antd.css';
 import '../styles/global.css';
+import 'antd/dist/antd.css';
 
 import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
@@ -33,13 +33,11 @@ const MyApp = ({ Component, pageProps }: ExtendedAppProps) => {
   // }, []);
 
   return (
-    <>
-      <Provider store={store}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </Provider>
-    </>
+    <Provider store={store}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </Provider>
   );
 };
 

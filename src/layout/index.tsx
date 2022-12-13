@@ -80,7 +80,7 @@ const SLayout = ({ children }: Props) => {
             items={topBarItems}
           />
         </Header>
-        <Content className="mx-4 max-h-full overflow-hidden">
+        <Content className="mx-4 max-h-full overflow-auto">
           {children}
         </Content>
       </Layout>

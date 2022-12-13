@@ -1,8 +1,10 @@
 import { getTableData, Params } from '@/api/cacheData';
-import { useSetState } from 'ahooks';
-import { Button, Col, Input, Row, Select, Tabs } from 'antd';
+import { Button, Col, Input, Row, Select, Tabs, Typography } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
+import { useObject, usePromise } from '@qunhe/budget-hooks';
 import React from 'react';
+import DataTable from '@/components/Table';
+import { getTime } from '@/utils/time';
 const { Option } = Select;
 
 const ENV = [
@@ -48,32 +50,33 @@ const BUSINESS = [
 
 const CUSTOM_TYPE = [
   {
-    value: '全屋定制',
-    label: '全屋定制',
+    value: 0,
+    label: '厨卫',
   },
   {
-    value: '厨卫定制',
-    label: '厨卫定制',
+    value: 1,
+    label: '全屋',
+  },
+  {
+    value: 2,
+    label: '门窗',
   },
 ];
 
-
 function App() {
-  const [params, setParams] = useSetState<Params>({
+  const [params, setParams] = useObject<Params>({
     stage: ENV[0]?.value || '',
-    design_id: '',
+    design_id: '3FO4M5RYATPC',
     client: BUSINESS[0]?.value || '',
-    level: '',
-    tool_type: CUSTOM_TYPE[0]?.value || '',
+    level: 1,
+    tool_type: CUSTOM_TYPE[0]?.value || 0,
   });
-  const getData = () => {
-    getTableData(params).then((res) => {
-      console.log(res);
-    });
-  };
+
+  const { data, run } = usePromise<any>(() => getTableData(params));
+
   return (
     <div>
-      <Row>
+      <Row >
         <Col span={4}>
           环境：
           <Select
@@ -82,7 +85,11 @@ function App() {
             style={{ width: 150 }}
           >
             {ENV.map((item) => {
-              return <Option value={item.value} key={item.label}>{item.label}</Option>;
+              return (
+                <Option value={item.value} key={item.label}>
+                  {item.label}
+                </Option>
+              );
             })}
           </Select>
         </Col>
@@ -102,7 +109,11 @@ function App() {
             style={{ width: 100 }}
           >
             {BUSINESS.map((item) => {
-              return <Option value={item.value} key={item.value}>{item.label}</Option>;
+              return (
+                <Option value={item.value} key={item.value}>
+                  {item.label}
+                </Option>
+              );
             })}
           </Select>
         </Col>
@@ -111,7 +122,7 @@ function App() {
           <Input
             style={{ width: 150 }}
             value={params.level}
-            onChange={(v) => setParams({ level: v.target.value })}
+            onChange={(v) => setParams({ level: Number(v.target.value) })}
           />
         </Col>
         <Col span={4}>
@@ -122,30 +133,64 @@ function App() {
             style={{ width: 100 }}
           >
             {CUSTOM_TYPE.map((item) => {
-              return <Option value={item.value}>{item.label}</Option>;
+              return (
+                <Option value={item.value} key={item.value}>
+                  {item.label}
+                </Option>
+              );
             })}
           </Select>
         </Col>
         <Col span={4}>
-          <Button type="primary" onClick={getData}>
+          <Button type="primary" onClick={run}>
             请求
           </Button>
         </Col>
       </Row>
+      <br/>
       <Tabs>
-        <Tabs.TabPane tab="项目 1" key="item-1">
-          <Row>
-            <Col span={12}>时间戳：</Col>
-            <Col span={12}>时间</Col>
-          </Row>
-          <TextArea />
-        </Tabs.TabPane>
-        <Tabs.TabPane tab="项目 2" key="item-2">
-          内容 2
-        </Tabs.TabPane>
+        {data?.map((item) => {
+          return Object.entries(item.data).map(([key, cacheData]) => {
+            return (
+              <Tabs.TabPane tab={item.name} key={key}>
+                <Typography.Title level={5}>时间</Typography.Title>
+                <Row>
+                  <Col span={12}>时间戳：{item.timestamp}</Col>
+                  <Col span={12}>时间: {getTime(item.timestamp)}</Col>
+                </Row>
+
+                <Typography.Title level={4}>请求参数</Typography.Title>
+                <Input.TextArea
+                  value={JSON.stringify(item.requestParams, null, 4)}
+                  disabled
+                  autoSize
+                />
+                <Typography.Title level={4}>缓存数据</Typography.Title>
+                {cacheData.map((tableData) => {
+                  const column = tableData?.columns?.map((item) => {
+                    return {
+                      title: item?.name,
+                      dataIndex: item?.name,
+                      key: item?.name,
+                      width: 100,
+                    };
+                  });
+                  return (
+                    <Row key={tableData.name}>
+                      <Typography.Title level={5}>
+                        {tableData.name}
+                      </Typography.Title>
+                      <DataTable data={tableData.data} columns={column} />
+                    </Row>
+                  );
+                })}
+              </Tabs.TabPane>
+            );
+          });
+        })}
       </Tabs>
     </div>
-  )
+  );
 }
 
 export default App;

@@ -4,7 +4,11 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 declare module 'axios' {
   export interface AxiosInstance {
     get<T = any>(url: string, config?: AxiosRequestConfig): Promise<T>;
-    post<T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>;
+    post<T = any>(
+      url: string,
+      data?: any,
+      config?: AxiosRequestConfig,
+    ): Promise<T>;
   }
 }
 
@@ -16,46 +20,60 @@ export interface ResponseData {
 
 service.interceptors.response.use(
   <T = any>(res: AxiosResponse<any>): Promise<T> => {
-    if (res?.status===200) {
+    if (res?.status === 200) {
       return Promise.resolve(res.data);
     }
     return Promise.reject(new Error(res.data || '请求失败，请重试'));
   },
-  err => {
-    if (err.response.status===401) {
-      console.log('401');
-      
-      // debugger
-      // const { origin } = window.location;
-      // window.location.href = `https://kuauth.kujiale.com/loginpage?backurl=${origin}`;
+  (err) => {
+    if (err.response.status === 401) {
+      const { origin, href } = window.location;
+      const encodeHref = encodeURIComponent(href);
+      window.location.href = `https://kuauth.kujiale.com/loginpage?backurl=${encodeURIComponent(
+        origin,
+      )}/login.html&nexturlv2=${encodeHref}`;
     }
     Promise.reject(
-        new Error(
-          (err && err.response && err.response.statusText) ||
-            '服务器错误，请重试',
-        ),
-      );}
+      new Error(
+        (err && err.response && err.response.statusText) ||
+          '服务器错误，请重试',
+      ),
+    );
+  },
 );
 
+interface BaseResponse<T> {
+  c:string;
+  d:T;
+  f:string;
+  m:string
+}
+
 const request = {
-  get: <T>(url: string, config?: AxiosRequestConfig): Promise<T> => {
+  get: <T>(
+    url: string,
+    config?: AxiosRequestConfig,
+  ): Promise<T> => {
     return new Promise((resolve, reject) => {
       service
-        .get<T>(url, config)
+        .get<BaseResponse<T>>(url, config)
         .then((res) => {
-          resolve(res);
+          resolve(res.d);
         })
         .catch((err) => {
           reject(err);
         });
     });
   },
-  post: <T>(url: string, config?: AxiosRequestConfig): Promise<T> => {
+  post: <T>(
+    url: string,
+    config?: AxiosRequestConfig,
+  ): Promise<T> => {
     return new Promise((resolve, reject) => {
       service
-        .post<T>(url, config)
+        .post<BaseResponse<T>>(url, config)
         .then((res) => {
-          resolve(res);
+          resolve(res.d);
         })
         .catch((err) => {
           reject(err);
@@ -63,4 +81,4 @@ const request = {
     });
   },
 };
-export default request
+export default request;

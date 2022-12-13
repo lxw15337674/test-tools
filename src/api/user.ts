@@ -1,4 +1,5 @@
 import request from "@/utils/request";
+import axios from "axios";
 
 export async function checkLogin() {
   return request.get('/kaptain/user/checkLogin');
@@ -35,9 +36,9 @@ export interface UserInfo {
 }
 
 export async function queryCurrentUser() {
-  return request.get<{currentUser:UserInfo}>('/kaptain/api/user/current').then(res=>res.currentUser)
+  return axios.get<{data:{currentUser:UserInfo}}>('/kaptain/api/user/current').then(res=>res.data.currentUser)
 }
 
 export async function queryUserLogout() {
-  return request.get('/kaptain/api/user/logout');
+  return axios.get('/kaptain/api/user/logout');
 }

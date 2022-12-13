@@ -18,7 +18,7 @@ function getItem(
 
 export const items: MenuItem[] = [
   getItem('json比对', 'compare', undefined),
-  getItem('缓存数据', 'cacheData', undefined),
+  getItem('业务线缓存数据查询', 'cacheData', undefined),
   // getItem('User', 'sub1', undefined, [
   //   getItem('Tom', '3'),
   //   getItem('Bill', '4'),

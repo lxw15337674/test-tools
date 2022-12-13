@@ -29,5 +29,6 @@ module.exports = {
     'react/display-name': 'off',
     'no-param-reassign': 'off',
     'max-params': 0,
+    "max-nested-callbacks":'off'
   },
 };
