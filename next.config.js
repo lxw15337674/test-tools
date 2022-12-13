@@ -1,6 +1,5 @@
 const withLess = require('next-with-less');
 
-/* eslint-disable import/no-extraneous-dependencies */
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 });
@@ -8,7 +7,10 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 module.exports = withBundleAnalyzer({
   ...withLess({}),
   eslint: {
-    dirs: ['.'],
+    ignoreDuringBuilds: true,
+  },
+  typescript:{
+    ignoreBuildErrors: true,
   },
   output: 'standalone',
 

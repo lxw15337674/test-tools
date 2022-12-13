@@ -7,8 +7,8 @@ export interface Params {
   level: string;
   tool_type: string;
 }
-
-export async function getTableData(params: Params) {
+// params: Params;
+export async function getTableData() {
   return request.get(
     `/BimToolApi/calc/biz/client/cache?stage=dev&design_id=3FO4M5RYATPC&client=STRUCT`,
   );
