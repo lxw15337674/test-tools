@@ -66,7 +66,7 @@ const CUSTOM_TYPE = [
 function App() {
   const [params, setParams] = useObject<Params>({
     stage: ENV[0]?.value || '',
-    design_id: '3FO4M5RYATPC',
+    design_id: '',
     client: BUSINESS[0]?.value || '',
     level: 1,
     tool_type: CUSTOM_TYPE[0]?.value || 0,
@@ -76,7 +76,7 @@ function App() {
 
   return (
     <div>
-      <Row >
+      <Row>
         <Col span={4}>
           环境：
           <Select
@@ -147,7 +147,7 @@ function App() {
           </Button>
         </Col>
       </Row>
-      <br/>
+      <br />
       <Tabs>
         {data?.map((item) => {
           return Object.entries(item.data).map(([key, cacheData]) => {

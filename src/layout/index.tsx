@@ -1,4 +1,4 @@
-import { Avatar, Layout, Menu, MenuProps, notification } from 'antd';
+import { Avatar, Button, Layout, Menu, MenuProps, notification } from 'antd';
 import router, { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import {
@@ -72,17 +72,15 @@ const SLayout = ({ children }: Props) => {
       </Sider>
       <Layout>
         <Header className="p-2 border-inherit	border-b-2 mb-2 h-12 leading-4 ">
-          <Menu
-            theme="dark"
-            mode="horizontal"
-            selectable={false}
-            className="float-right"
-            items={topBarItems}
-          />
+          <div className="float-right text-[white]">
+            <span>
+              <Avatar src={user.avatar} />
+              <span className="ml-3 ">{user.name}</span>
+            </span>
+            <Button className="h-4 py-4 leading-0 ml-4" type="link"  onClick={logout}>退出登录</Button>
+          </div>
         </Header>
-        <Content className="mx-4 max-h-full overflow-auto">
-          {children}
-        </Content>
+        <Content className="mx-4 max-h-full overflow-auto">{children}</Content>
       </Layout>
     </Layout>
   );
